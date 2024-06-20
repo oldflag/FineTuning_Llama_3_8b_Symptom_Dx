@@ -28,7 +28,7 @@ Fine-tunes the model in Colab to generate accurate diagnoses based on input symp
 •	Model Uploading:   
 Supports saving the fine-tuned model in different formats (float16, int4, and LoRA adapters) and uploading it to Hugging Face.   
 
-Inference
+## Inference
 
 After fine-tuning, the model can be used to generate diagnoses based on new symptom inputs.   
 The project supports enabling native faster inference and using the fine-tuned model for generation tasks.
