@@ -32,3 +32,24 @@ Supports saving the fine-tuned model in different formats (float16, int4, and Lo
 
 After fine-tuning, the model can be used to generate diagnoses based on new symptom inputs.   
 The project supports enabling native faster inference and using the fine-tuned model for generation tasks.
+
+``` python
+FastLanguageModel.for_inference(model)
+
+inputs = tokenizer(
+[
+    alpaca_prompt.format(
+        "I have a skin rash that gets worse in the winter when the air is dry. I have to moisturize more regularly and use humidifiers to keep my skin moisturized. I also have joint pain",  # input
+        "",  # output - leave this blank for generation!
+    )
+], return_tensors="pt").to("cuda")
+
+outputs = model.generate(**inputs, max_new_tokens=64, use_cache=True)
+print(tokenizer.batch_decode(outputs))
+```
+
+ ```bash
+Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.   
+Instruction: Based on the following symptoms, suggest a possible diagnosis   
+Input: I have a skin rash that gets worse in the winter when the air is dry. I have to moisturize more regularly and use humidifiers to keep my skin moisturized. I also have joint pain   
+Response: psoriasis   
